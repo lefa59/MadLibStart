@@ -116,6 +116,12 @@ reseting the form to try again
         const firstName = document.querySelector('#firstName');
         const favColor = document.querySelector("#favColor");
         const place = document.querySelector('#place');
+        const animal = document.querySelector('#animal');
+        const superHero = document.querySelector('#superHero');
+        const music = document.querySelector('#music');
+        const season = document.querySelector('#season');
+        const number = document.querySelector('#number');
+        const pokemon = document.querySelector('#pokemon');
         const theStory = document.querySelector("#theStory");
 
         window.addEventListener("keydown", keydownHandler, false);
@@ -132,6 +138,10 @@ reseting the form to try again
 
         function writeStory() {
             //grab the input values to write the story
+            let story = "In the beginning, "
+            story += firstName.value
+            story += " was a farmer. He wore a " + favColor.value + " shirt."
+            theStory.innerHTML = story
 
         }
 
