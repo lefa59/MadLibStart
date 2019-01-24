@@ -103,6 +103,8 @@ reseting the form to try again
     <script>
         const inputPanel = document.querySelector("#inputPanel");
         const outputPanel = document.querySelector("#outputPanel");
+        outputPanel.className = "displayNone"
+        inputPanel.className = "displayBlock"
         const warning = document.querySelector("#warning");
 
         const submit = document.querySelector("#submit");
@@ -142,6 +144,8 @@ reseting the form to try again
             story += firstName.value
             story += " was a farmer. He wore a " + favColor.value + " shirt."
             theStory.innerHTML = story
+            outputPanel.className = "displayBlock"
+            inputPanel.className = "displayNone"
 
         }
 
