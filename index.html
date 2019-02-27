@@ -20,10 +20,10 @@ reseting the form to try again
 <html>
 
 <head>
-    <title>Master MadLib</title>
-    <meta charset="UTF-8">
-    <style>
-      body {background-image: url(Background.jpg);}
+  <title>Master MadLib</title>
+  <meta charset="UTF-8">
+  <style>
+    body {background-image: url(Background.jpg);}
 
         div {
 
@@ -54,183 +54,188 @@ reseting the form to try again
         }
     </style>
 </head>
+
 <head>
+
 <body>
   <p><img src="Logo.png" alt="Logo"></p>
-    <div id="inputPanel">
-        <h3>A few questions for you</h3>
-        <p>A first name:
-            <input id="firstName" type="text" placeholder="First Name">
-        </p>
-        <p>Your favorite color:
-            <input id="favColor" type="text" placeholder="Favorite Color">
-        </p>
-        <p>Place:
-            <input id="place" type="text" placeholder="Place">
-        </p>
-        <p>Animal:
-            <input id="animal" type="text" placeholder="Animal">
-        </p>
-        <p>Super Hero:
-            <input id="superHero" type="text" placeholder="Super Hero">
-        </p>
-        <p>Your favorite Music:
-            <input id="music" type="text" placeholder="Favorite Music">
-        </p>
-        <p>Your favorite Season:
-            <input id="season" type="text" placeholder="Music">
-        </p>
-        <p>You favorite Number:
-            <input id="number" type="text" placeholder="Favorite Number">
-        </p>
-        <p>Pokemon:
-            <input id="pokemon" type="text" placeholder="Pokemon">
-        </p>
-        <button id="submit">Submit your answers</button>
-        <p id="warning">Please answer all questions.</p>
+  <div id="inputPanel">
+    <h3>A few questions for you</h3>
+    <p>A first name:
+      <input id="firstName" type="text" placeholder="First Name">
+    </p>
+    <p>Your favorite color:
+      <input id="favColor" type="text" placeholder="Favorite Color">
+    </p>
+    <p>Place:
+      <input id="place" type="text" placeholder="Place">
+    </p>
+    <p>Animal:
+      <input id="animal" type="text" placeholder="Animal">
+    </p>
+    <p>Super Hero:
+      <input id="superHero" type="text" placeholder="Super Hero">
+    </p>
+    <p>Your favorite Music:
+      <input id="music" type="text" placeholder="Favorite Music">
+    </p>
+    <p>Your favorite Season:
+      <input id="season" type="text" placeholder="Music">
+    </p>
+    <p>You favorite Number:
+      <input id="number" type="text" placeholder="Favorite Number">
+    </p>
+    <p>Pokemon:
+      <input id="pokemon" type="text" placeholder="Pokemon">
+    </p>
+    <button id="submit">Submit your answers</button>
+    <p id="warning">Please answer all questions.</p>
 
-    </div>
-    <p></p>
-    <div id="outputPanel">
-        <p id="theStory"></p>
-        <button id="again">Again?</button>
-    </div>
-    <script>
-        const inputPanel = document.querySelector("#inputPanel");
-        const outputPanel = document.querySelector("#outputPanel");
-        outputPanel.className = "displayNone"
-        inputPanel.className = "displayBlock"
-        const warning = document.querySelector("#warning");
+  </div>
+  <p></p>
+  <div id="outputPanel">
+    <p id="theStory"></p>
+    <button id="again">Again?</button>
+  </div>
+  <script>
+    const inputPanel = document.querySelector("#inputPanel");
+    const outputPanel = document.querySelector("#outputPanel");
+    outputPanel.className = "displayNone"
+    inputPanel.className = "displayBlock"
+    const warning = document.querySelector("#warning");
 
-        const submit = document.querySelector("#submit");
-        submit.addEventListener("click", writeStory, false);
-        submit.style.cursor = "pointer"
+    const submit = document.querySelector("#submit");
+    submit.addEventListener("click", writeStory, false);
+    submit.style.cursor = "pointer"
 
-        const again = document.querySelector("#again");
-        again.addEventListener("click", resetPage, false);
-        again.style.cursor = "pointer"
+    const again = document.querySelector("#again");
+    again.addEventListener("click", resetPage, false);
+    again.style.cursor = "pointer"
 
-        document.querySelector('#firstName').focus();
+    document.querySelector('#firstName').focus();
 
-        const firstName = document.querySelector('#firstName');
-        const favColor = document.querySelector("#favColor");
-        const place = document.querySelector('#place');
-        const animal = document.querySelector('#animal');
-        const superHero = document.querySelector('#superHero');
-        const music = document.querySelector('#music');
-        const season = document.querySelector('#season');
-        const number = document.querySelector('#number');
-        const pokemon = document.querySelector('#pokemon');
-        const theStory = document.querySelector("#theStory");
+    const firstName = document.querySelector('#firstName');
+    const favColor = document.querySelector("#favColor");
+    const place = document.querySelector('#place');
+    const animal = document.querySelector('#animal');
+    const superHero = document.querySelector('#superHero');
+    const music = document.querySelector('#music');
+    const season = document.querySelector('#season');
+    const number = document.querySelector('#number');
+    const pokemon = document.querySelector('#pokemon');
+    const background = document.querySelector('#background');
+    const theStory = document.querySelector("#theStory");
 
-        window.addEventListener("keydown", keydownHandler, false);
+    window.addEventListener("keydown", keydownHandler, false);
 
-        function keydownHandler(event) {
-            console.log("Enter key pressed");
-            if (event.keyCode === 13) {
-     //ascii keycode
-     console.log("Enter key pressed");
-     writeStory()
-   }
- }
+    function keydownHandler(event) {
+      console.log("Enter key pressed");
+      if (event.keyCode === 13) {
+        //ascii keycode
+        console.log("Enter key pressed");
+        writeStory()
+      }
+    }
 
-        }
 
-        function checkComplete() {
-            //verify the user filled in the form
-            // firstName.classList.remove('bgPink')
+
+    function checkComplete() {
+      //verify the user filled in the form
+      // firstName.classList.remove('bgPink')
       // favColor.classList.remove('bgPink')
       // place.classList.remove('bgPink')
       removePinkBG()
       if (firstName.value == "") {
-            firstName.className = "bgPink"
-          }
-          if (favColor.value == ""){
-            favColor.className = "bgPink"
-          }
-          if (place.value == ""){
-            place.className = "bgPink"
-          }
-          if (firstName.value == "" || favColor.value == "" || place.value == ""){
-            warning.className = "displayBlock"
-            return false
-          } else {
-            return true
-          }
-        }
+        firstName.className = "bgPink"
+      }
+      if (favColor.value == "") {
+        favColor.className = "bgPink"
+      }
+      if (place.value == "") {
+        place.className = "bgPink"
+      }
+      if (firstName.value == "" || favColor.value == "" || place.value == "") {
+        warning.className = "displayBlock"
+        return false
+      } else {
+        return true
+      }
+    }
 
 
 
-        function writeStory() {
-            //grab the input values to write the story
-            let story = "In the beginning, " + firstName.value + " was a farmer. They wore a " + favColor.value +
-            " shirt." + place.value + " is where they would like to spend thier days most of the time. When they where little they had a " + animal.value +
-            ". They and thier pet would watch a lot of " + superHero.value +
-            " this was thier favorite movies to watch." + music.value +
-            theStory.innerHTML = story
+    function writeStory() {
+      // grab the input values to write the story
+      let story = "In the beginning, " + firstName.value + " was a farmer. They wore a " + favColor.value +
+        " shirt." + place.value + " is where they would like to spend thier days most of the time. When they where little they had a " + animal.value +
+        ". They and thier pet would watch a lot of " + superHero.value +
+        " this was thier favorite movies to watch." + music.value
+        theStory.innerHTML = story
+      if (checkComplete() == false) {
+        return
+      }
 
-            outputPanel.className = "displayBlock"
-            inputPanel.className = "displayNone"
+      //
+      //       const storyText1 = "Welcome, " + firstName.value + ". "
+      // const storyText2 = "Only silly people would choose " + favColor.value + " as their favorite color."
+      // const storyText3 = "It sounds like " + place.value + " would be a fantastic place to visit."
 
-        }
+      // const newP1 = document.createElement('p')
+      // const newP2 = document.createElement('p')
+      // const newP3 = document.createElement('p')
+      // const newT1 = document.createTextNode(storyText1)
+      // const newT2 = document.createTextNode(storyText2)
+      // const newT3 = document.createTextNode(storyText3)
+      // newP1.appendChild(newT1)
+      // newP2.appendChild(newT2)
+      // newP3.appendChild(newT3)
+      // theStory.appendChild(newP1)
+      // theStory.appendChild(newP2)
+      // theStory.appendChild(newP3)
 
-        const storyText1 = "Welcome, " + firstName.value + ". "
-  const storyText2 = "Only silly people would choose " + favColor.value + " as their favorite color."
-  const storyText3 = "It sounds like " + place.value + " would be a fantastic place to visit."
+      // addTextNode(storyText1)
+      // addTextNode(storyText2)
+      // addTextNode(storyText3)
 
-  // const newP1 = document.createElement('p')
-  // const newP2 = document.createElement('p')
-  // const newP3 = document.createElement('p')
-  // const newT1 = document.createTextNode(storyText1)
-  // const newT2 = document.createTextNode(storyText2)
-  // const newT3 = document.createTextNode(storyText3)
-  // newP1.appendChild(newT1)
-  // newP2.appendChild(newT2)
-  // newP3.appendChild(newT3)
-  // theStory.appendChild(newP1)
-  // theStory.appendChild(newP2)
-  // theStory.appendChild(newP3)
+      inputPanel.className = "displayNone"
+      outputPanel.className = "displayBlock"
+      warning.className = "displayNone"
 
-  addTextNode(storyText1)
-  addTextNode(storyText2)
-  addTextNode(storyText3)
+    }
 
-  inputPanel.className = "displayNone"
-  outputPanel.className = "displayBlock"
-  warning.className = "displayNone"
+    function addTextNode(text) {
+      const newP = document.createElement('p')
+      const newT = document.createTextNode(text)
+      newP.appendChild(newT)
+      theStory.appendChild(newP)
+    }
 
-}
-function addTextNode(text) {
-  const newP = document.createElement('p')
-  const newT = document.createTextNode(text)
-  newP.appendChild(newT)
-  theStory.appendChild(newP)
-}
-function resetPage() {
-  //put stuff here to reset the page so the user can try again
-  inputPanel.className = "displayBlock"
-  outputPanel.className = "displayNone"
-  warning.className = "displayNone"
+    function resetPage() {
+      //put stuff here to reset the page so the user can try again
+      inputPanel.className = "displayBlock"
+      outputPanel.className = "displayNone"
+      warning.className = "displayNone"
 
-  firstName.value = ""
-  favColor.value = ""
-  place.value = ""
+      firstName.value = ""
+      favColor.value = ""
+      place.value = ""
 
-  // firstName.classList.remove('bgPink')
-  // favColor.classList.remove('bgPink')
-  // place.classList.remove('bgPink')
-  removePinkBG()
+      // firstName.classList.remove('bgPink')
+      // favColor.classList.remove('bgPink')
+      // place.classList.remove('bgPink')
+      removePinkBG()
 
-  theStory.innerHTML = ""
+      theStory.innerHTML = ""
 
-  firstName.focus()
-}
-function removePinkBG(){
-  firstName.classList.remove('bgPink')
-  favColor.classList.remove('bgPink')
-  place.classList.remove('bgPink')
-}
-    </script>
+      firstName.focus()
+    }
+
+    function removePinkBG() {
+      firstName.classList.remove('bgPink')
+      favColor.classList.remove('bgPink')
+      place.classList.remove('bgPink')
+    }
+  </script>
 </body>
 
 </html>
