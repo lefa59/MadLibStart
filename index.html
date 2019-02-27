@@ -106,7 +106,7 @@ reseting the form to try again
     outputPanel.className = "displayNone"
     inputPanel.className = "displayBlock"
     const warning = document.querySelector("#warning");
-
+    warning.className = "displayNone"
     const submit = document.querySelector("#submit");
     submit.addEventListener("click", writeStory, false);
     submit.style.cursor = "pointer"
@@ -194,9 +194,9 @@ reseting the form to try again
     function writeStory() {
       // grab the input values to write the story
       let story = "In the beginning, " + firstName.value + " was a farmer. They wore a " + favColor.value +
-        " shirt." + place.value + " is where they would like to spend thier days most of the time. When they where little they had a " + animal.value +
+        " shirt." + place.value + " is where they would like to spend their days most of the time. When they where little they had a " + animal.value +
         ". They and thier pet would watch a lot of " + superHero.value +
-        " this was thier favorite movies to watch." + music.value + " is all they listen to day in and day out." + season.value + " to you is the best season of all thier is none like it."
+        " this was thier favorite movies to watch." + music.value + " is all they listen to day in and day out." + season.value + " to you is the best season of all their is none like it."
         + number.value + " is how long you will live in this world." + pokemon.value + " is what you wanted to be as a kid." + background.value + " this is how you feel about this Mad Lib."
         theStory.innerHTML = story
       if (checkComplete() == false) {
